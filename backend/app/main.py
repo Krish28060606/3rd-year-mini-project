@@ -4,9 +4,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.api.v1.api import api_router
 from app.utils.logger import logger
+from app.core.database import Base, engine
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    # Initialize SQLite database
+    Base.metadata.create_all(bind=engine)
     logger.info(f"Starting {settings.PROJECT_NAME} (v{settings.VERSION}, Env: {settings.ENVIRONMENT})")
     yield
     logger.info(f"Shutting down {settings.PROJECT_NAME}")

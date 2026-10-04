@@ -8,6 +8,7 @@ import { FittingReportPage } from './pages/FittingReportPage';
 import { PrivacyPage } from './pages/PrivacyPage';
 import { Navbar } from './components/Navbar';
 import { PlaceholderModal } from './components/PlaceholderModal';
+import { AuthModal } from './components/AuthModal';
 import { ThemeProvider } from './context/ThemeContext';
 
 // Helper component to scroll to top on route change
@@ -50,9 +51,16 @@ function MainLayout() {
         </Routes>
       </main>
 
-      {/* Global Interactive Modal */}
+      {/* Interactive Auth Modal */}
+      <AuthModal
+        isOpen={modalType === 'login' || modalType === 'signup'}
+        initialView={modalType === 'login' ? 'login' : 'signup'}
+        onClose={handleCloseModal}
+      />
+
+      {/* Global Interactive Modal for other placeholders */}
       <PlaceholderModal
-        isOpen={!!modalType}
+        isOpen={!!modalType && modalType !== 'login' && modalType !== 'signup'}
         modalType={modalType}
         onClose={handleCloseModal}
       />

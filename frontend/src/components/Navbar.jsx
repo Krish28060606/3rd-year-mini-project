@@ -88,13 +88,13 @@ export function Navbar({ onOpenModal }) {
             </button>
 
             {/* Dark Primary Button as requested */}
-            <button
-              onClick={() => onOpenModal('analysis')}
-              className="btn-dark-olive relative inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full font-bold text-xs sm:text-sm tracking-wide hover:scale-[1.02] active:scale-[0.98]"
+            <Link
+              to="/fitting"
+              className="btn-dark-olive relative inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full font-bold text-xs sm:text-sm tracking-wide hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
             >
               <Sparkles className="w-3.5 h-3.5 text-[#C3AF83]" />
               <span>Start Analysis</span>
-            </button>
+            </Link>
 
             {/* Mobile Hamburger Button */}
             <button
