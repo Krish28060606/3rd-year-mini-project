@@ -18,22 +18,24 @@ from app.schemas.auth import (
     SendOTPRequest,
     SendOTPResponse,
 )
+from dotenv import load_dotenv
 from app.utils.logger import logger
+
+load_dotenv()
 
 router = APIRouter()
 
 # In-memory store for OTPs: { email: { "otp": "123456", "expires_at": float } }
 otp_cache: Dict[str, Dict] = {}
 
-# SMTP Configuration
-SMTP_HOST = os.getenv("SMTP_HOST", "smtp.gmail.com")
-SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
-SMTP_USER = os.getenv("SMTP_USER", "")
-SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
-
 def send_real_email_otp(to_email: str, otp_code: str) -> bool:
     """Sends a real branded verification email via SMTP if credentials are configured."""
-    if not SMTP_USER or not SMTP_PASSWORD:
+    smtp_host = os.getenv("SMTP_HOST", "smtp.gmail.com")
+    smtp_port = int(os.getenv("SMTP_PORT", "587"))
+    smtp_user = os.getenv("SMTP_USER", "").strip()
+    smtp_password = os.getenv("SMTP_PASSWORD", "").replace(" ", "").strip()
+
+    if not smtp_user or not smtp_password:
         logger.warning(f"SMTP credentials not set in .env. OTP for {to_email} is {otp_code}")
         print(f"\n==========================================")
         print(f"  [EMAIL DISPATCH] Verification OTP for {to_email}: {otp_code}")
@@ -44,7 +46,7 @@ def send_real_email_otp(to_email: str, otp_code: str) -> bool:
     try:
         msg = MIMEMultipart("alternative")
         msg["Subject"] = f"Your OptiFit 3D Verification Code: {otp_code}"
-        msg["From"] = f"OptiFit 3D <{SMTP_USER}>"
+        msg["From"] = f"OptiFit 3D <{smtp_user}>"
         msg["To"] = to_email
 
         html_content = f"""
@@ -77,9 +79,9 @@ def send_real_email_otp(to_email: str, otp_code: str) -> bool:
         """
         msg.attach(MIMEText(html_content, "html"))
 
-        with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=12) as server:
+        with smtplib.SMTP(smtp_host, smtp_port, timeout=12) as server:
             server.starttls()
-            server.login(SMTP_USER, SMTP_PASSWORD)
+            server.login(smtp_user, smtp_password)
             server.send_message(msg)
 
         logger.info(f"Sent actual email OTP to {to_email}")
