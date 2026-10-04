@@ -346,17 +346,12 @@ export function AuthModal({ isOpen, onClose, initialView = 'login' }) {
           {/* SIGNUP STEP 2: Enter Email OTP */}
           {view === 'signup' && signupStep === 'otp' && (
             <form onSubmit={handleVerifyOtpAndRegister} className="space-y-4 relative z-10">
-              {/* Highlight badge with OTP code for easy demonstration */}
-              {demoOtpPreview && (
-                <div className="p-3 bg-[#E9E4CF] border border-[#CAD8C5] rounded-xl text-center">
-                  <span className="text-[11px] font-mono text-[#526049] uppercase block mb-1">
-                    Direct Email OTP Code
-                  </span>
-                  <span className="text-xl font-mono font-extrabold text-[#3E4D2A] tracking-widest bg-white px-3 py-1 rounded-lg border border-[#CAD8C5] inline-block shadow-sm">
-                    {demoOtpPreview}
-                  </span>
+              <div className="p-3.5 bg-[#E9E4CF]/60 border border-[#CAD8C5] rounded-xl flex items-start gap-2.5">
+                <Mail className="w-4 h-4 text-[#3E4D2A] mt-0.5 flex-shrink-0" />
+                <div className="text-xs text-[#526049] leading-relaxed">
+                  We've sent a 6-digit verification code to <span className="font-semibold text-[#1F2818]">{email}</span>. Please check your inbox and spam folder.
                 </div>
-              )}
+              </div>
 
               <div>
                 <label className="block text-[11px] font-bold font-mono text-[#3E4D2A] mb-1.5 uppercase tracking-wide">
