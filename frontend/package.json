@@ -1,7 +1,7 @@
 {
-  "name": "optifit-3d-frontend",
+  "name": "optifit-3d",
   "private": true,
-  "version": "0.1.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,24 +9,24 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-three/drei": "^9.121.4",
+    "@react-three/fiber": "^8.17.10",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.18.2",
+    "lucide-react": "^0.475.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "three": "^0.165.0",
-    "@react-three/fiber": "^8.16.8",
-    "@react-three/drei": "^9.106.0",
-    "lucide-react": "^0.395.0",
-    "axios": "^1.7.2",
-    "clsx": "^2.1.1",
-    "tailwind-merge": "^2.3.0"
+    "react-router-dom": "^7.18.3",
+    "tailwind-merge": "^2.6.0",
+    "three": "^0.160.0"
   },
   "devDependencies": {
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "@types/three": "^0.165.0",
-    "@vitejs/plugin-react": "^4.3.1",
-    "autoprefixer": "^10.4.19",
-    "postcss": "^8.4.38",
-    "tailwindcss": "^3.4.4",
-    "vite": "^5.3.1"
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "vite": "^5.4.11"
   }
 }
