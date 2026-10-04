@@ -27,6 +27,7 @@ export function AuthModal({ isOpen, onClose, initialView = 'login' }) {
   const [signupStep, setSignupStep] = useState('details');
   const [otpCode, setOtpCode] = useState('');
   const [demoOtpPreview, setDemoOtpPreview] = useState(null);
+  const [showBackupCode, setShowBackupCode] = useState(false);
 
   // Form State
   const [name, setName] = useState('');
@@ -51,6 +52,7 @@ export function AuthModal({ isOpen, onClose, initialView = 'login' }) {
       setPassword('');
       setOtpCode('');
       setDemoOtpPreview(null);
+      setShowBackupCode(false);
       setCaptchaInput('');
       setCaptchaCode(generateCaptchaCode());
     }
@@ -385,6 +387,26 @@ export function AuthModal({ isOpen, onClose, initialView = 'login' }) {
                   Resend Code
                 </button>
               </div>
+
+              {/* Helpful reveal button if email inbox delivery is pending */}
+              {demoOtpPreview && (
+                <div className="text-center pt-1">
+                  {!showBackupCode ? (
+                    <button
+                      type="button"
+                      onClick={() => setShowBackupCode(true)}
+                      className="text-[11px] font-mono text-[#607742] hover:text-[#1F2818] underline cursor-pointer"
+                    >
+                      Didn't receive email? Click to view verification code
+                    </button>
+                  ) : (
+                    <div className="p-2.5 rounded-xl bg-[#E9E4CF] border border-[#CAD8C5] inline-block shadow-sm">
+                      <span className="text-[10px] font-mono text-[#526049] block mb-0.5">Verification Code</span>
+                      <span className="text-base font-mono font-bold text-[#3E4D2A] tracking-widest">{demoOtpPreview}</span>
+                    </div>
+                  )}
+                </div>
+              )}
 
               <button
                 type="submit"
