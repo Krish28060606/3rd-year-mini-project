@@ -1,0 +1,105 @@
+[
+  {
+    "id": "frame-001",
+    "name": "AeroTitanium Minimalist",
+    "modelPath": "/models/aerotitanium.glb",
+    "frameWidth": 138.0,
+    "bridgeWidth": 18.0,
+    "lensWidth": 52.0,
+    "lensHeight": 38.0,
+    "templeLength": 142.0,
+    "weight": 14.5,
+    "material": "Beta-Titanium",
+    "frameShape": "Rectangular",
+    "frameStyle": "Rimless",
+    "frameColor": "Brushed Silver",
+    "suitableOccasions": [
+      "Office",
+      "Daily"
+    ],
+    "genderNeutral": true,
+    "lensTypes": [
+      "Single Vision",
+      "Progressive",
+      "Blue Light"
+    ],
+    "description": "Ultra-lightweight aerospace-grade titanium chassis optimized for extended computing ergonomics."
+  },
+  {
+    "id": "frame-002",
+    "name": "OptiClassic Acetate",
+    "modelPath": "/models/classic_acetate.glb",
+    "frameWidth": 142.0,
+    "bridgeWidth": 20.0,
+    "lensWidth": 50.0,
+    "lensHeight": 44.0,
+    "templeLength": 145.0,
+    "weight": 26.0,
+    "material": "Cellulose Acetate",
+    "frameShape": "Round",
+    "frameStyle": "Full Rim",
+    "frameColor": "Havana Tortoise",
+    "suitableOccasions": [
+      "College",
+      "Party",
+      "Daily"
+    ],
+    "genderNeutral": true,
+    "lensTypes": [
+      "Single Vision",
+      "Photochromic"
+    ],
+    "description": "Handcrafted Italian acetate with balanced mass distribution and universal keyhole bridge."
+  },
+  {
+    "id": "frame-003",
+    "name": "Apex Aviator Ergonomic",
+    "modelPath": "/models/apex_aviator.glb",
+    "frameWidth": 146.0,
+    "bridgeWidth": 16.0,
+    "lensWidth": 58.0,
+    "lensHeight": 48.0,
+    "templeLength": 140.0,
+    "weight": 19.8,
+    "material": "Monel Alloy",
+    "frameShape": "Aviator",
+    "frameStyle": "Full Rim",
+    "frameColor": "Matte Gunmetal",
+    "suitableOccasions": [
+      "Travel",
+      "Party",
+      "Daily"
+    ],
+    "genderNeutral": true,
+    "lensTypes": [
+      "Polarized",
+      "UV400"
+    ],
+    "description": "Classic teardrop geometry engineered with double-bridge reinforcement and self-adjusting silicone nose pads."
+  },
+  {
+    "id": "frame-004",
+    "name": "Veloce Sport Shield",
+    "modelPath": "/models/veloce_sport.glb",
+    "frameWidth": 144.0,
+    "bridgeWidth": 17.0,
+    "lensWidth": 62.0,
+    "lensHeight": 40.0,
+    "templeLength": 135.0,
+    "weight": 22.0,
+    "material": "TR90 Memory Polymer",
+    "frameShape": "Wrap",
+    "frameStyle": "Semi-Rimless",
+    "frameColor": "Carbon Black",
+    "suitableOccasions": [
+      "Sports",
+      "Travel"
+    ],
+    "genderNeutral": true,
+    "lensTypes": [
+      "Impact Resistant Polycarbonate",
+      "Polarized"
+    ],
+    "description": "Dynamic wrap-around TR90 frame with non-slip hydrophilic rubber temple inserts for high-velocity stability."
+  }
+]

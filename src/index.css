@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --bg-cream: #F7F5EE;
+  --text-olive: #1F2818;
+  --olive-dark: #3E4D2A;
+}
+
+body {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+  background-color: #F7F5EE;
+  color: #1F2818;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Atmospheric Olive Summer Tech Grid */
+.bg-tech-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(96, 119, 66, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(96, 119, 66, 0.08) 1px, transparent 1px);
+}
+
+/* Atmospheric Radial Glows using Sage & Sand */
+.bg-radial-glow {
+  background: radial-gradient(circle at 50% 0%, rgba(202, 216, 197, 0.5), transparent 70%);
+}
+
+.bg-radial-subtle {
+  background: radial-gradient(circle at 50% 50%, rgba(195, 175, 131, 0.16), transparent 80%);
+}
+
+/* Glassmorphism Panels for Olive Summer */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid #D8D3C3;
+  color: #1F2818;
+  box-shadow: 0 4px 20px -2px rgba(62, 77, 42, 0.06);
+}
+
+.glass-panel:hover {
+  border-color: #7E8F6A;
+  box-shadow: 0 12px 30px -8px rgba(62, 77, 42, 0.12);
+}
+
+/* Gradient Text using Olive Summer Shades */
+.text-gradient-olive,
+.text-gradient-cyan {
+  background: linear-gradient(135deg, #3E4D2A 0%, #607742 55%, #7E8F6A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Primary Dark Buttons (as requested: dark colour only in buttons) */
+.btn-dark-olive {
+  background-color: #3E4D2A;
+  color: #FAF8F3;
+  border: 1px solid #26311A;
+  box-shadow: 0 4px 18px rgba(62, 77, 42, 0.25);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-dark-olive:hover {
+  background-color: #26311A;
+  box-shadow: 0 8px 25px rgba(62, 77, 42, 0.38);
+  transform: translateY(-1px);
+}
+
+/* Secondary Button with Dark Olive Border */
+.btn-outline-olive {
+  background-color: transparent;
+  color: #3E4D2A;
+  border: 2px solid #3E4D2A;
+  transition: all 0.2s ease;
+}
+
+.btn-outline-olive:hover {
+  background-color: #3E4D2A;
+  color: #FAF8F3;
+}
+
+/* Custom modern scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F7F5EE;
+}
+::-webkit-scrollbar-thumb {
+  background: #CAD8C5;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7E8F6A;
+}

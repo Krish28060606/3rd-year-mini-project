@@ -1,0 +1,9 @@
+{
+  "estimatedFaceWidthMm": 140.5,
+  "estimatedFaceHeightMm": 182.0,
+  "estimatedPupillaryDistanceMm": 63.2,
+  "estimatedBridgeWidthMm": 18.4,
+  "confidenceScore": 0.92,
+  "calibrationMode": "heuristic_intercanthal",
+  "isEstimated": true
+}
