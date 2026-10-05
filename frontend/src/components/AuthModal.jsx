@@ -139,14 +139,14 @@ export function AuthModal({ isOpen, onClose, initialView = 'login' }) {
       localStorage.setItem('optifit_user', JSON.stringify(data.user));
 
       onClose();
-      navigate('/fitting');
+      navigate('/dashboard');
     } catch (err) {
       // If backend matches local fallback demo preview
       if (demoOtpPreview && otpCode.trim() === demoOtpPreview) {
         localStorage.setItem('optifit_token', 'demo_token_' + Date.now());
         localStorage.setItem('optifit_user', JSON.stringify({ name, email }));
         onClose();
-        navigate('/fitting');
+        navigate('/dashboard');
       } else {
         setError(err.message || 'Invalid verification code. Please check and try again.');
       }
@@ -186,7 +186,7 @@ export function AuthModal({ isOpen, onClose, initialView = 'login' }) {
       localStorage.setItem('optifit_user', JSON.stringify(data.user));
 
       onClose();
-      navigate('/fitting');
+      navigate('/dashboard');
     } catch (err) {
       setError(err.message || 'Login failed. Please verify your credentials.');
     } finally {

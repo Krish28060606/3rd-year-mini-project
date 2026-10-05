@@ -6,6 +6,7 @@ import { FittingStudioPage } from './pages/FittingStudioPage';
 import { ComparisonPage } from './pages/ComparisonPage';
 import { FittingReportPage } from './pages/FittingReportPage';
 import { PrivacyPage } from './pages/PrivacyPage';
+import { DashboardPage } from './pages/DashboardPage';
 import { Navbar } from './components/Navbar';
 import { PlaceholderModal } from './components/PlaceholderModal';
 import { AuthModal } from './components/AuthModal';
@@ -24,6 +25,8 @@ function ScrollToTop() {
 
 function MainLayout() {
   const [modalType, setModalType] = useState(null);
+  const location = useLocation();
+  const isDashboard = location.pathname === '/dashboard';
 
   const handleOpenModal = (type) => {
     setModalType(type);
@@ -36,13 +39,14 @@ function MainLayout() {
   return (
     <div className="min-h-screen bg-[#F7F5EE] text-[#1F2818] flex flex-col selection:bg-[#CAD8C5] selection:text-[#1F2818] transition-colors duration-300">
       <ScrollToTop />
-      {/* Persistent Navigation Bar across all pages */}
-      <Navbar onOpenModal={handleOpenModal} />
+      {/* Persistent Navigation Bar across all public pages, hidden on dashboard which has its own sidebar */}
+      {!isDashboard && <Navbar onOpenModal={handleOpenModal} />}
 
       {/* Routed Page Content */}
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<Overview onOpenModal={handleOpenModal} />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/pipeline" element={<PipelinePage />} />
           <Route path="/fitting" element={<FittingStudioPage onExplore3D={() => handleOpenModal('fitting3d')} />} />
           <Route path="/comparison" element={<ComparisonPage />} />

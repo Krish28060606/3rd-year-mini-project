@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
-import { Glasses, Menu, X, Sparkles, LogIn, UserPlus, Sun, Moon } from 'lucide-react';
+import { Glasses, Menu, X, Sparkles, LogIn, UserPlus, Sun, Moon, LayoutDashboard } from 'lucide-react';
 import { NAV_LINKS, PROJECT_INFO } from '../data/projectData';
 import { useTheme } from '../context/ThemeContext';
 
@@ -71,21 +71,33 @@ export function Navbar({ onOpenModal }) {
 
           {/* Right Action Buttons */}
           <div className="flex items-center gap-2 sm:gap-3">
-            <button
-              onClick={() => onOpenModal('login')}
-              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold text-[#3E4D2A] border border-[#3E4D2A]/70 hover:bg-[#3E4D2A] hover:text-[#FAF8F3] transition-all"
-            >
-              <LogIn className="w-3.5 h-3.5" />
-              <span>Login</span>
-            </button>
+            {localStorage.getItem('optifit_token') ? (
+              <Link
+                to="/dashboard"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold text-[#FAF8F3] bg-[#3E4D2A] hover:bg-[#26311A] transition-all shadow-sm"
+              >
+                <LayoutDashboard className="w-3.5 h-3.5 text-[#C3AF83]" />
+                <span>Dashboard</span>
+              </Link>
+            ) : (
+              <>
+                <button
+                  onClick={() => onOpenModal('login')}
+                  className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold text-[#3E4D2A] border border-[#3E4D2A]/70 hover:bg-[#3E4D2A] hover:text-[#FAF8F3] transition-all"
+                >
+                  <LogIn className="w-3.5 h-3.5" />
+                  <span>Login</span>
+                </button>
 
-            <button
-              onClick={() => onOpenModal('signup')}
-              className="hidden md:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold text-[#3E4D2A] border border-[#3E4D2A]/70 hover:bg-[#3E4D2A] hover:text-[#FAF8F3] transition-all"
-            >
-              <UserPlus className="w-3.5 h-3.5" />
-              <span>Sign Up</span>
-            </button>
+                <button
+                  onClick={() => onOpenModal('signup')}
+                  className="hidden md:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold text-[#3E4D2A] border border-[#3E4D2A]/70 hover:bg-[#3E4D2A] hover:text-[#FAF8F3] transition-all"
+                >
+                  <UserPlus className="w-3.5 h-3.5" />
+                  <span>Sign Up</span>
+                </button>
+              </>
+            )}
 
             {/* Dark Primary Button as requested */}
             <Link
