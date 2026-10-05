@@ -71,33 +71,31 @@ export function Navbar({ onOpenModal }) {
 
           {/* Right Action Buttons */}
           <div className="flex items-center gap-2 sm:gap-3">
-            {localStorage.getItem('optifit_token') ? (
+            {localStorage.getItem('optifit_token') && (
               <Link
                 to="/dashboard"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold text-[#FAF8F3] bg-[#3E4D2A] hover:bg-[#26311A] transition-all shadow-sm"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-bold text-[#FAF8F3] bg-[#3E4D2A] hover:bg-[#26311A] transition-all shadow-sm cursor-pointer"
               >
                 <LayoutDashboard className="w-3.5 h-3.5 text-[#C3AF83]" />
                 <span>Dashboard</span>
               </Link>
-            ) : (
-              <>
-                <button
-                  onClick={() => onOpenModal('login')}
-                  className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold text-[#3E4D2A] border border-[#3E4D2A]/70 hover:bg-[#3E4D2A] hover:text-[#FAF8F3] transition-all"
-                >
-                  <LogIn className="w-3.5 h-3.5" />
-                  <span>Login</span>
-                </button>
-
-                <button
-                  onClick={() => onOpenModal('signup')}
-                  className="hidden md:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold text-[#3E4D2A] border border-[#3E4D2A]/70 hover:bg-[#3E4D2A] hover:text-[#FAF8F3] transition-all"
-                >
-                  <UserPlus className="w-3.5 h-3.5" />
-                  <span>Sign Up</span>
-                </button>
-              </>
             )}
+
+            <button
+              onClick={() => onOpenModal('login')}
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold text-[#3E4D2A] border border-[#3E4D2A]/70 hover:bg-[#3E4D2A] hover:text-[#FAF8F3] transition-all cursor-pointer"
+            >
+              <LogIn className="w-3.5 h-3.5" />
+              <span>Login</span>
+            </button>
+
+            <button
+              onClick={() => onOpenModal('signup')}
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold text-[#3E4D2A] border border-[#3E4D2A]/70 hover:bg-[#3E4D2A] hover:text-[#FAF8F3] transition-all cursor-pointer"
+            >
+              <UserPlus className="w-3.5 h-3.5" />
+              <span>Sign Up</span>
+            </button>
 
             {/* Dark Primary Button as requested */}
             <Link

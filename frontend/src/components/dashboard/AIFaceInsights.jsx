@@ -47,15 +47,15 @@ export function AIFaceInsights({
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className={`rounded-2xl bg-white border border-[#CAD8C5]/50 p-6 shadow-sm ${className}`}
+      className={`rounded-2xl bg-white dark:bg-[#1A2216] border border-[#CAD8C5]/60 dark:border-[#3E4D2A]/60 p-6 shadow-sm hover:shadow-[0_16px_35px_rgba(62,77,42,0.16)] transition-all duration-300 ${className}`}
     >
       {/* Header */}
       <motion.div variants={itemVariants} className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Scan className="w-5 h-5 text-[#607742]" />
-          <h2 className="text-lg font-bold text-[#1F2818]">AI Face Analysis</h2>
+          <Scan className="w-5 h-5 text-[#607742] dark:text-[#CAD8C5]" />
+          <h2 className="text-lg font-bold text-[#1F2818] dark:text-[#FAF8F3]">AI Face Analysis</h2>
         </div>
-        <span className="text-xs text-[#607742] font-mono">{updatedAt}</span>
+        <span className="text-xs text-[#607742] dark:text-[#CAD8C5] font-mono">{updatedAt}</span>
       </motion.div>
 
       {/* Metrics Grid */}
@@ -64,16 +64,16 @@ export function AIFaceInsights({
           <motion.div
             key={metric.label || index}
             variants={itemVariants}
-            className="bg-[#FAF8F3] rounded-xl p-3.5 border border-[#E9E4CF] flex flex-col justify-between"
+            className="bg-[#FAF8F3] dark:bg-[#26311A]/60 rounded-xl p-3.5 border border-[#E9E4CF] dark:border-[#3E4D2A]/60 flex flex-col justify-between hover:scale-[1.02] hover:shadow-xs transition-transform"
           >
-            <span className="text-[11px] font-mono text-[#526049] uppercase tracking-wider">
+            <span className="text-[11px] font-mono text-[#526049] dark:text-[#CAD8C5] uppercase tracking-wider">
               {metric.label}
             </span>
-            <div className="text-xl font-bold text-[#1F2818] mt-1">
+            <div className="text-xl font-bold text-[#1F2818] dark:text-[#FAF8F3] mt-1 font-display">
               {metric.value}
             </div>
             {metric.sub ? (
-              <span className="text-[10px] text-[#607742] font-mono mt-0.5">
+              <span className="text-[10px] text-[#607742] dark:text-[#C3AF83] font-mono mt-0.5">
                 {metric.sub}
               </span>
             ) : null}
@@ -84,15 +84,19 @@ export function AIFaceInsights({
       {/* Bottom Bar: Fit Score */}
       <motion.div
         variants={itemVariants}
-        className="mt-5 p-4 bg-[#E9E4CF]/40 rounded-xl border border-[#CAD8C5] flex items-center justify-between"
+        className="mt-5 p-4 bg-[#E9E4CF]/40 dark:bg-[#26311A] rounded-xl border border-[#CAD8C5] dark:border-[#3E4D2A] flex items-center justify-between shadow-xs"
       >
         <div className="flex items-center gap-2">
-          <Sparkles className="w-4 h-4 text-[#607742]" />
-          <span className="text-sm font-semibold text-[#1F2818]">Geometric Fit Score</span>
+          <Sparkles className="w-4 h-4 text-[#607742] dark:text-[#CAD8C5]" />
+          <span className="text-xs font-mono font-semibold text-[#1F2818] dark:text-[#FAF8F3] uppercase tracking-wider">
+            Geometric Fit Score
+          </span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-xl font-bold text-[#3E4D2A]">{fitScore}</span>
-          <span className="bg-[#CAD8C5] text-[#26311A] px-2 py-0.5 rounded-full text-[10px] font-bold">
+          <span className="text-2xl font-bold text-[#3E4D2A] dark:text-[#CAD8C5] font-mono">
+            {fitScore}
+          </span>
+          <span className="bg-[#CAD8C5] dark:bg-[#3E4D2A] text-[#26311A] dark:text-[#FAF8F3] px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-xs">
             {fitStatus}
           </span>
         </div>
