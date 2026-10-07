@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { Overview } from './pages/Overview';
 import { PipelinePage } from './pages/PipelinePage';
 import { FittingStudioPage } from './pages/FittingStudioPage';
@@ -21,6 +21,26 @@ function ScrollToTop() {
   }, [pathname]);
 
   return null;
+}
+
+// Protected Route Guard
+function ProtectedRoute({ children, onOpenModal }) {
+  const token = sessionStorage.getItem('optifit_token');
+  if (!token) {
+    // If not logged in, redirect to landing page and optionally prompt login
+    return <Navigate to="/" replace />;
+  }
+  return children;
+}
+
+// Public Route Guard (Don't let logged in user go back to overview page)
+function PublicOnlyRoute({ children }) {
+  const token = sessionStorage.getItem('optifit_token');
+  if (token) {
+    // Already logged in in this session -> forward directly to dashboard
+    return <Navigate to="/dashboard" replace />;
+  }
+  return children;
 }
 
 function MainLayout() {
@@ -45,8 +65,25 @@ function MainLayout() {
       {/* Routed Page Content */}
       <main className="flex-1">
         <Routes>
-          <Route path="/" element={<Overview onOpenModal={handleOpenModal} />} />
-          <Route path="/dashboard" element={<DashboardPage />} />
+          {/* Once logged in, user cannot re-enter the overview page */}
+          <Route 
+            path="/" 
+            element={
+              <PublicOnlyRoute>
+                <Overview onOpenModal={handleOpenModal} />
+              </PublicOnlyRoute>
+            } 
+          />
+          {/* Protected Dashboard */}
+          <Route 
+            path="/dashboard" 
+            element={
+              <ProtectedRoute onOpenModal={handleOpenModal}>
+                <DashboardPage />
+              </ProtectedRoute>
+            } 
+          />
+          {/* Internal studio & comparison modules */}
           <Route path="/pipeline" element={<PipelinePage />} />
           <Route path="/fitting" element={<FittingStudioPage onExplore3D={() => handleOpenModal('fitting3d')} />} />
           <Route path="/comparison" element={<ComparisonPage />} />
@@ -83,4 +120,3 @@ function App() {
 }
 
 export default App;
-

@@ -45,7 +45,7 @@ export function DashboardSidebar({
   // Read stored user on mount
   useEffect(() => {
     try {
-      const stored = localStorage.getItem('optifit_user');
+      const stored = sessionStorage.getItem('optifit_user') || localStorage.getItem('optifit_user');
       if (stored) {
         const parsed = JSON.parse(stored);
         if (parsed && typeof parsed === 'object') {
@@ -62,6 +62,8 @@ export function DashboardSidebar({
 
   const handleLogout = () => {
     try {
+      sessionStorage.removeItem('optifit_user');
+      sessionStorage.removeItem('optifit_token');
       localStorage.removeItem('optifit_user');
       localStorage.removeItem('optifit_token');
     } catch (err) {
