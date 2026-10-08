@@ -137,6 +137,8 @@ export function AuthModal({ isOpen, onClose, initialView = 'login' }) {
 
       sessionStorage.setItem('optifit_token', data.access_token);
       sessionStorage.setItem('optifit_user', JSON.stringify(data.user));
+      localStorage.setItem('optifit_token', data.access_token);
+      localStorage.setItem('optifit_user', JSON.stringify(data.user));
 
       onClose();
       navigate('/dashboard');
@@ -145,6 +147,8 @@ export function AuthModal({ isOpen, onClose, initialView = 'login' }) {
       if (demoOtpPreview && otpCode.trim() === demoOtpPreview) {
         sessionStorage.setItem('optifit_token', 'demo_token_' + Date.now());
         sessionStorage.setItem('optifit_user', JSON.stringify({ name, email }));
+        localStorage.setItem('optifit_token', 'demo_token_' + Date.now());
+        localStorage.setItem('optifit_user', JSON.stringify({ name, email }));
         onClose();
         navigate('/dashboard');
       } else {
@@ -184,6 +188,8 @@ export function AuthModal({ isOpen, onClose, initialView = 'login' }) {
 
       sessionStorage.setItem('optifit_token', data.access_token);
       sessionStorage.setItem('optifit_user', JSON.stringify(data.user));
+      localStorage.setItem('optifit_token', data.access_token);
+      localStorage.setItem('optifit_user', JSON.stringify(data.user));
 
       onClose();
       navigate('/dashboard');
@@ -192,6 +198,8 @@ export function AuthModal({ isOpen, onClose, initialView = 'login' }) {
         // Fallback for seamless offline session demo so user is never blocked if backend is disconnected
         sessionStorage.setItem('optifit_token', 'demo_token_' + Date.now());
         sessionStorage.setItem('optifit_user', JSON.stringify({ name: email.split('@')[0], email }));
+        localStorage.setItem('optifit_token', 'demo_token_' + Date.now());
+        localStorage.setItem('optifit_user', JSON.stringify({ name, email }));
         onClose();
         navigate('/dashboard');
         return;

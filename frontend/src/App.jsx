@@ -25,7 +25,7 @@ function ScrollToTop() {
 
 // Protected Route Guard
 function ProtectedRoute({ children, onOpenModal }) {
-  const token = sessionStorage.getItem('optifit_token');
+  const token = sessionStorage.getItem('optifit_token') || localStorage.getItem('optifit_token');
   if (!token) {
     // If not logged in, redirect to landing page and optionally prompt login
     return <Navigate to="/" replace />;
@@ -35,7 +35,7 @@ function ProtectedRoute({ children, onOpenModal }) {
 
 // Public Route Guard (Don't let logged in user go back to overview page)
 function PublicOnlyRoute({ children }) {
-  const token = sessionStorage.getItem('optifit_token');
+  const token = sessionStorage.getItem('optifit_token') || localStorage.getItem('optifit_token');
   if (token) {
     // Already logged in in this session -> forward directly to dashboard
     return <Navigate to="/dashboard" replace />;

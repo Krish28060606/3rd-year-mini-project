@@ -19,14 +19,14 @@ export function DashboardPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if user is logged in
-    const token = localStorage.getItem('optifit_token');
+    // Check if user is logged in (support sessionStorage and localStorage)
+    const token = sessionStorage.getItem('optifit_token') || localStorage.getItem('optifit_token');
     if (!token) {
       navigate('/');
       return;
     }
     try {
-      const user = JSON.parse(localStorage.getItem('optifit_user') || '{}');
+      const user = JSON.parse(sessionStorage.getItem('optifit_user') || localStorage.getItem('optifit_user') || '{}');
       setUserName(user.name || user.email?.split('@')[0] || 'User');
     } catch {
       setUserName('User');
