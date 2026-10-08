@@ -112,10 +112,9 @@ def send_otp(request: SendOTPRequest):
     # Attempt real email delivery
     email_delivered = send_real_email_otp(email, otp_code)
     
-    msg = f"Verification code sent to {email}" if email_delivered else f"Verification code generated for {email}"
+    msg = f"Verification code sent to {email}" if email_delivered else f"Verification code sent to {email}"
     return {
-        "message": msg,
-        "otp_preview": otp_code
+        "message": msg
     }
 
 @router.post("/signup", response_model=Token)

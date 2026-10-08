@@ -26,8 +26,6 @@ export function AuthModal({ isOpen, onClose, initialView = 'login' }) {
   // Sign up multi-step state: 'details' | 'otp'
   const [signupStep, setSignupStep] = useState('details');
   const [otpCode, setOtpCode] = useState('');
-  const [demoOtpPreview, setDemoOtpPreview] = useState(null);
-  const [showBackupCode, setShowBackupCode] = useState(false);
 
   // Form State
   const [name, setName] = useState('');
@@ -51,8 +49,6 @@ export function AuthModal({ isOpen, onClose, initialView = 'login' }) {
       setEmail('');
       setPassword('');
       setOtpCode('');
-      setDemoOtpPreview(null);
-      setShowBackupCode(false);
       setCaptchaInput('');
       setCaptchaCode(generateCaptchaCode());
     }
@@ -95,16 +91,10 @@ export function AuthModal({ isOpen, onClose, initialView = 'login' }) {
         throw new Error(errData.detail || 'Could not send verification code.');
       }
 
-      const data = await response.json();
-      setDemoOtpPreview(data.otp_preview);
-      setSuccessMsg(`Verification code sent to ${email}`);
+      setSuccessMsg(`Verification code sent to ${email}. Please check your inbox.`);
       setSignupStep('otp');
     } catch (err) {
-      // Fallback generator for smooth testing even if offline
-      const localOtp = Math.floor(100000 + Math.random() * 900000).toString();
-      setDemoOtpPreview(localOtp);
-      setSuccessMsg(`Verification code generated for ${email}`);
-      setSignupStep('otp');
+      setError(err.message || 'Could not send verification code. Please check your email.');
     } finally {
       setIsLoading(false);
     }
@@ -143,17 +133,7 @@ export function AuthModal({ isOpen, onClose, initialView = 'login' }) {
       onClose();
       navigate('/dashboard');
     } catch (err) {
-      // If backend matches local fallback demo preview
-      if (demoOtpPreview && otpCode.trim() === demoOtpPreview) {
-        sessionStorage.setItem('optifit_token', 'demo_token_' + Date.now());
-        sessionStorage.setItem('optifit_user', JSON.stringify({ name, email }));
-        localStorage.setItem('optifit_token', 'demo_token_' + Date.now());
-        localStorage.setItem('optifit_user', JSON.stringify({ name, email }));
-        onClose();
-        navigate('/dashboard');
-      } else {
-        setError(err.message || 'Invalid verification code. Please check and try again.');
-      }
+      setError(err.message || 'Invalid verification code. Please check and try again.');
     } finally {
       setIsLoading(false);
     }
@@ -404,25 +384,6 @@ export function AuthModal({ isOpen, onClose, initialView = 'login' }) {
                 </button>
               </div>
 
-              {/* Helpful reveal button if email inbox delivery is pending */}
-              {demoOtpPreview && (
-                <div className="text-center pt-1">
-                  {!showBackupCode ? (
-                    <button
-                      type="button"
-                      onClick={() => setShowBackupCode(true)}
-                      className="text-[11px] font-mono text-[#607742] hover:text-[#1F2818] underline cursor-pointer"
-                    >
-                      Didn't receive email? Click to view verification code
-                    </button>
-                  ) : (
-                    <div className="p-2.5 rounded-xl bg-[#E9E4CF] border border-[#CAD8C5] inline-block shadow-sm">
-                      <span className="text-[10px] font-mono text-[#526049] block mb-0.5">Verification Code</span>
-                      <span className="text-base font-mono font-bold text-[#3E4D2A] tracking-widest">{demoOtpPreview}</span>
-                    </div>
-                  )}
-                </div>
-              )}
 
               <button
                 type="submit"

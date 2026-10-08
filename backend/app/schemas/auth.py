@@ -6,7 +6,7 @@ class SendOTPRequest(BaseModel):
 
 class SendOTPResponse(BaseModel):
     message: str
-    otp_preview: str
+    otp_preview: Optional[str] = None
 
 class UserCreate(BaseModel):
     email: EmailStr
